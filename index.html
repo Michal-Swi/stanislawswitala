@@ -1,84 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stanislaw Switala</title>
-    <style>
-        .left-align {
-            text-align: left;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- <title>Stanislaw Switala</title> -->
+  <style>
+	@font-face {
+		font-family: 'neue montreal';
+		src: url('fonts/NeueMontreal-Regular.otf') format('otf');
+		font-weight: normal;
+		font-style: normal;
+	}
 
-        .text-lower {
-            line-height: 2;
-        }
+    body {
+		
+		margin: 0;
+		display: flex;
+		height: 100vh;
+		overflow: hidden;
+    }
+	
+    .sidebar {
+		width: 260px;
+		padding: 40px 20px;
+		background-color: #fff;
+		border-right: 1px solid #ddd;
+		box-sizing: border-box;
+    }
 
-        .font-size-big {
-            font-size: 50px;
-        }
+    .sidebar h1 {
+		font-size: 16px;
+		letter-spacing: 2px;
+		margin-bottom: 40px;
+		font-weight: 500;
+    }
 
-        .font-size-regular {
-            font-size: 20px;
-        }
+    .nav-links {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 40px 0;
+    }
 
-        .padding-left {
-            padding-left: 60px;
-        }
+    .nav-links li {
+		margin-bottom: 12px;
+		font-size: 14px;
+    }
 
-        .padding-bottom {
-            padding-bottom: 40px;
-        }
+    .nav-links a {
+		text-decoration: none;
+		color: #000;
+    }
 
-        .padding-top {
-            padding-top: 40px;
-        }
+    .footer-links {
+		font-size: 12px;
+		color: #555;
+    }
 
-        .center-text {
-            text-align: center;
-        }
+    .footer-links a {
+		display: block;
+		color: #000;
+		margin-bottom: 8px;
+		text-decoration: none;
+    }
 
-        .highlight {
-            display: inline-block;
-            position: relative;
-            color: black;
-        }
+	.footer-links a:hover {
+		color: grey;
+	}	
 
-        .highlight:hover {
-            color: grey;
-        }
+    .main {
+		flex-grow: 1;
+		position: relative;
+		background-color: #f8f8f8;
+    }
 
-        .inline-container img, .inline-container p {
-            display: inline-block;
-            vertical-align: middle;
-        }
+    .main img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+    }
+	
+	.nav-links li a:hover {
+        color: grey;
+    }
 
-        .inline-container img {
-            margin-left: 10px;
-        }
-
-        .flex-container {
-            display: flex;
-			flex-direction: column;
-            align-items: center; 
-        }
-
-        .flex-container img {
-			width: 70%;
-			height: auto;
-            margin-top: 10px; 
-        }
-
-        .flex-container .text-container {
-            order: -1; 
-        }
-    </style>
+  </style>
 </head>
+
 <body>
-    <div class="flex-container">
-        <div class="text-container font-size-big padding-left text-lower">
-            <p>Site in progress...</p>
-        </div>
+  <div class="sidebar">
+	  <img src="./photos/title.jpg" alt="Stanislaw Switala" style="width: 180px; margin-bottom: 40px;" />
+	  <!-- <h1>Stanislaw<br>Switala</h1> -->
+
+    <ul class="nav-links">
+      <li><a href="#">From Tangier to Marakesh</a></li>
+      <li><a href="#">Alpes Poloniae</a></li>
+      <li><a href="#">Warsaw</a></li>
+      <li><a href="#">Sand and Steel</a></li>
+      <li><a href="#">Silesia</a></li>
+    </ul>
+
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <br />
     </div>
+  </div>
+
+  <div class="main">
+    <img src="photos/alpes poloniae-1.jpg" alt="Photo by Stanislaw Switala" />
+  </div>
+
 </body>
 </html>
 
