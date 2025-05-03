@@ -4,87 +4,149 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- <title>Stanislaw Switala</title> -->
-  <style>
-	@font-face {
-		font-family: 'neue montreal';
-		src: url('fonts/NeueMontreal-Regular.otf') format('otf');
-		font-weight: normal;
-		font-style: normal;
-	}
 
-    body {
-		
-		margin: 0;
-		display: flex;
-		height: 100vh;
-		overflow: hidden;
-    }
-	
-    .sidebar {
-		width: 260px;
-		padding: 40px 20px;
-		background-color: #fff;
-		border-right: 1px solid #ddd;
-		box-sizing: border-box;
-    }
+<style>
+  @font-face {
+    font-family: 'neue montreal';
+    src: url('fonts/NeueMontreal-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
 
-    .sidebar h1 {
-		font-size: 16px;
-		letter-spacing: 2px;
-		margin-bottom: 40px;
-		font-weight: 500;
-    }
+  body {
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    font-family: 'neue montreal', sans-serif;
+    overflow: hidden;
+  }
 
-    .nav-links {
-		list-style: none;
-		padding: 0;
-		margin: 0 0 40px 0;
-    }
+  .sidebar {
+    width: 260px;
+    padding: 40px 20px;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+    box-sizing: border-box;
+  }
 
-    .nav-links li {
-		margin-bottom: 12px;
-		font-size: 14px;
-    }
+  .nav-links,
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px 0;
+  }
 
-    .nav-links a {
-		text-decoration: none;
-		color: #000;
-    }
+  .nav-links li {
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
 
-    .footer-links {
-		font-size: 12px;
-		color: #555;
-    }
+  .nav-links a,
+  .footer-links a {
+    text-decoration: none;
+    color: #000;
+    display: block;
+  }
 
-    .footer-links a {
-		display: block;
-		color: #000;
-		margin-bottom: 8px;
-		text-decoration: none;
-    }
+  .nav-links a:hover,
+  .footer-links a:hover {
+    color: grey;
+  }
 
-	.footer-links a:hover {
-		color: grey;
-	}	
+  .main {
+    flex-grow: 1;
+    background-color: #f8f8f8;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 
-    .main {
-		flex-grow: 1;
-		position: relative;
-		background-color: #f8f8f8;
-    }
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+  }
 
-    .main img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		display: block;
-    }
-	
-	.nav-links li a:hover {
-        color: grey;
-    }
+  #main-photo {
+	max-width: 90%;
+	max-height: 90%;
+	object-fit: contain;
+	display: block;
+	margin: auto;
+	box-sizing: border-box;
+  }
 
-  </style>
+  #gallery.default-view {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  #gallery.default-view img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+  }
+
+  #gallery.grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 10px;
+    padding: 10px;
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  #gallery.grid-view img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+  }
+
+  #gallery.grid-view img:hover {
+    opacity: 0.7;
+  }
+
+.lightbox {
+  display: none; 
+  position: fixed;
+  z-index: 999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+}
+
+.lightbox-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+</style>
+
 </head>
 
 <body>
@@ -93,10 +155,10 @@
 	  <!-- <h1>Stanislaw<br>Switala</h1> -->
 
     <ul class="nav-links">
-      <li><a href="#">From Tangier to Marakesh</a></li>
-      <li><a href="#">Alpes Poloniae</a></li>
-      <li><a href="#">Warsaw</a></li>
-      <li><a href="#">Sand and Steel</a></li>
+      <li onclick=showGallery('tangier')><a href="#">From Tangier to Marakesh</a></li>
+      <li onclick=showGallery('alpes')><a href="#">Alpes Poloniae</a></li>
+      <li onclick=showGallery('warsaw')><a href="#">Warsaw</a></li>
+      <li onclick=showGallery('sand')><a href="#">Sand and Steel</a></li>
       <li><a href="#">Silesia</a></li>
     </ul>
 
@@ -107,10 +169,19 @@
     </div>
   </div>
 
-  <div class="main">
-    <img src="photos/alpes poloniae-1.jpg" alt="Photo by Stanislaw Switala" />
-  </div>
+	<div class="main">
+		<div id="gallery" class="default-view">
+			<img id="main-photo" alt="Photo By Stanislaw Switala" />
+		</div>
+	</div>
 
+	<div id="lightbox" class="lightbox">
+		<span class="close">&times;</span>
+		<img class="lightbox-content" id="lightbox-img" />
+	</div>
+  
+	<script src="./show_gallery.js" defer></script>
+	<script src="./get_random_image.js" defer></script>
 </body>
 </html>
 
